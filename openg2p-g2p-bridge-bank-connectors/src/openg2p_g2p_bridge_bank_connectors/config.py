@@ -24,3 +24,4 @@ class Settings(BaseSettings):
     cbe_password: str = "852456"
     cbe_company: str = ""
     bank_simulator_code: str = "CBE"
+    sample_conf:str=""
