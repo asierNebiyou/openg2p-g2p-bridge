@@ -12,7 +12,7 @@ jobs:
     name: Docker Build and Push For Workers Branch
     runs-on: ubuntu-latest
     env:
-      NAMESPACE: ${{ secrets.docker_hub_organisation || 'openg2p' }}
+      NAMESPACE: ${{ secrets.docker_hub_organisation || 'a' }}
       SERVICE_NAME: openg2p-g2p-bridge-celery-workers
     steps:
       - uses: actions/checkout@v3
