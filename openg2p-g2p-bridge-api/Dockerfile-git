@@ -7,13 +7,15 @@ ARG container_user_gid=1001
 ARG BRANCH_NAME
 ENV BRANCH_NAME=${BRANCH_NAME}
 
-RUN groupadd -g ${container_user_gid} ${container_user_group} \
-  && useradd -mN -u ${container_user_uid} -G ${container_user_group} -s /bin/bash ${container_user}
+RUN addgroup -g ${container_user_gid} ${container_user_group} \
+  && adduser -u ${container_user_uid} -G ${container_user_group} -s /bin/sh -D ${container_user}
 
 WORKDIR /app
 
-RUN install_packages libpq-dev libmagic-dev \
-  && apt-get clean && rm -rf /var/lib/apt/lists /var/cache/apt/archives
+RUN apk add --no-cache \
+    git \
+    postgresql-dev \
+    file-dev
 
 RUN chown -R ${container_user}:${container_user_group} /app
 
